@@ -111,12 +111,9 @@ tests/                       # JVM unit tests + migration test
 - Counting depends on Instagram's UI structure (view IDs and tab labels). If Instagram changes them, detection accuracy can drop — the app falls back to swipe counting and logs what it sees so the rules can be corrected.
 - The count is "swipes detected / Reels advanced", not verified Reels watched. Replays do not count; auto-advance does.
 - `UsageStats` is throttled or unreliable on some devices, so session times are best-effort on those phones.
-- The UBL Digital banking app blocks access while any accessibility service is enabled, including this one. That is a known, unresolved compatibility issue.
 - Android only. There is no iOS version.
 
-## Roadmap
 
-No formal roadmap. The current focus is verifying the in-app updater end to end on a real phone.
 
 ## Disclaimer
 
