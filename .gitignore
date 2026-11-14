@@ -1,0 +1,18 @@
+# Android build outputs
+build/
+out/
+.gradle/
+.idea/
+captures/
+*.apk
+*.aab
+*.idsig
+
+# Local config and signing (never commit)
+local.properties
+*.jks
+*.keystore
+keystore.properties
+
+# macOS
+.DS_Store
