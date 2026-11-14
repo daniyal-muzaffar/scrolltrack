@@ -49,9 +49,9 @@ public final class AppUpdater {
     private AppUpdater() {}
 
     /** Version file. Format: {"versionCode":17,"versionName":"1.4.0",
-     *  "apkUrl":"https://...","notes":"..."} — hosted on the user's Drive. */
+     *  "apkUrl":"https://...","notes":"..."} — hosted on GitHub. */
     public static final String UPDATE_URL =
-            "https://raw.githubusercontent.com/daniyal-muzaffar/scrolltrack-updates/main/version.json";
+            "https://raw.githubusercontent.com/daniyal-muzaffar/scrolltrack/main/version.json";
 
     public static final long CHECK_INTERVAL_MS = 24L * 60 * 60 * 1000;
     private static final int CONNECT_TIMEOUT_MS = 5_000;

@@ -3,6 +3,12 @@
 All notable changes to ScrollTrack are documented here, newest first.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.4.2] - 2026-11-15
+
+### Changed
+
+- Repository renamed from `scrolltrack-updates` to `scrolltrack`. The in-app updater now checks the new repository URL; installed copies keep working through GitHub's redirect from the old name.
+
 ## [1.4.1] - 2026-11-14
 
 ### Changed

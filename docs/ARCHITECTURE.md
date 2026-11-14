@@ -40,7 +40,7 @@ The count is "swipes detected / Reels advanced", never "Reels verified watched".
 
 ```
 App launch (at most once a day, auto-check on by default)
-  -> GET https://raw.githubusercontent.com/daniyal-muzaffar/scrolltrack-updates/main/version.json
+  -> GET https://raw.githubusercontent.com/daniyal-muzaffar/scrolltrack/main/version.json
   -> UpdateCheck.parseVersionJson: versionCode, versionName, apkUrl, notes
   -> versionCode > installed ? prompt "Update available" (Update / Later)
   -> Update: download APK to the app cache with a progress dialog,

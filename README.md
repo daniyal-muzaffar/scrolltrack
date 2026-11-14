@@ -2,8 +2,8 @@
 
 A personal Android tool that makes short-form scrolling visible: it counts how many Instagram Reels you swipe through and how long you spend there, all on your device.
 
-[![Latest release](https://img.shields.io/github/v/release/daniyal-muzaffar/scrolltrack-updates)](https://github.com/daniyal-muzaffar/scrolltrack-updates/releases/latest)
-[![License: MIT](https://img.shields.io/github/license/daniyal-muzaffar/scrolltrack-updates)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/daniyal-muzaffar/scrolltrack)](https://github.com/daniyal-muzaffar/scrolltrack/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/daniyal-muzaffar/scrolltrack)](LICENSE)
 ![Platform: Android](https://img.shields.io/badge/platform-Android-3DDC84)
 ![Language: Java](https://img.shields.io/badge/language-Java-orange)
 ![Min SDK 26](https://img.shields.io/badge/minSdk-26-blue)
@@ -31,7 +31,7 @@ Screenshots are being captured on a real phone. Placeholders for now:
 
 ## Download and install
 
-Get the APK from the [latest release](https://github.com/daniyal-muzaffar/scrolltrack-updates/releases/latest).
+Get the APK from the [latest release](https://github.com/daniyal-muzaffar/scrolltrack/releases/latest).
 
 1. Download `ScrollTrack-vX.Y.Z.apk` on your phone.
 2. Open it. Android will ask you to allow installing apps from this source — allow it once for your browser or file manager.
@@ -65,8 +65,8 @@ After that, updates arrive in the app itself: when a new version is published, S
 Prerequisites: JDK 17 and the Android SDK with build-tools 34.0.0 and platform `android-34`.
 
 ```sh
-git clone https://github.com/daniyal-muzaffar/scrolltrack-updates.git
-cd scrolltrack-updates
+git clone https://github.com/daniyal-muzaffar/scrolltrack.git
+cd scrolltrack
 cp keystore.properties.example keystore.properties
 # edit keystore.properties with your keystore path and passwords
 # (or generate one: see the comment inside keystore.properties.example)
