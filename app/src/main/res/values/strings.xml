@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScrollTrack</string>
+    <string name="accessibility_service_label">ScrollTrack gesture detection</string>
+    <string name="accessibility_service_description">Counts your upward swipe gestures inside Instagram and notices when you switch to another app so tracking can stop. It never reads text, messages, or screen content — it only sees app names and scroll movements.</string>
+</resources>
