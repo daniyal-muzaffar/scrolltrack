@@ -17,8 +17,8 @@ JAVA_HOME="${JAVA_HOME:-$ANDROID_SDK/jdk/jdk-17.0.20.1+1}"
 export JAVA_HOME
 export PATH="$JAVA_HOME/bin:$PATH"
 BT="$ANDROID_SDK/build-tools/34.0.0"
-VERSION_CODE="${VERSION_CODE:-20}"
-VERSION_NAME="${VERSION_NAME:-1.5.0}"
+VERSION_CODE="${VERSION_CODE:-21}"
+VERSION_NAME="${VERSION_NAME:-1.5.1}"
 
 # --- signing config: keystore.properties first, environment variables second ---
 STORE_FILE="${KEYSTORE_FILE:-}"

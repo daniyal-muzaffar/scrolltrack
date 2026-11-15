@@ -30,17 +30,20 @@ public final class StatsUploader {
     private static final int CONNECT_TIMEOUT_MS = 5_000;
     private static final int READ_TIMEOUT_MS = 8_000;
 
-    /** Launch hook: uploads today's totals when the user opted in and
-     *  they changed since the last upload. No-op when the endpoint is
-     *  not configured (no backend chosen yet) or the toggle is off. */
-    public static void maybeUploadOnLaunch(Context ctx) {
+    /** Foreground hook: uploads today's totals when the user opted in and
+     *  they changed since the last upload. Called from onResume, so it
+     *  fires on a fresh launch AND whenever the app returns from the
+     *  background. No-op when the endpoint is not configured (no backend
+     *  chosen yet) or the toggle is off. */
+    public static void maybeUploadOnForeground(Context ctx) {
         if (!AnonymousStats.isEndpointConfigured()) return;
         if (!Prefs.get(ctx).isAnonymousStatsEnabled()) return;
         uploadNow(ctx.getApplicationContext());
     }
 
     /** Uploads today's totals right now (used when the toggle is
-     *  switched on, and on launch). Runs on a worker thread. */
+     *  switched on, and whenever the app comes to the foreground).
+     *  Runs on a worker thread. */
     public static void uploadNow(Context ctx) {
         if (!AnonymousStats.isEndpointConfigured()) return;
         final Context appCtx = ctx.getApplicationContext();

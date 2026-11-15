@@ -103,7 +103,6 @@ public class MainActivity extends Activity implements ScreenHost {
         setContentView(root);
         goToTab(ScreenHost.TAB_DASHBOARD);
         com.dudeyy.scrolltrack.util.AppUpdater.maybeCheckOnLaunch(this);
-        com.dudeyy.scrolltrack.util.StatsUploader.maybeUploadOnLaunch(this);
     }
 
     private View navItem(int index) {
@@ -182,6 +181,11 @@ public class MainActivity extends Activity implements ScreenHost {
             // Re-apply theme if it changed in settings.
             refreshCurrent();
         }
+        // Stats upload lives here, not in onCreate: onResume runs on a
+        // fresh launch AND whenever the app returns from the background,
+        // so coming back to an already-open app sends the latest totals
+        // too. The upload itself is still gated (opt-in + totals changed).
+        com.dudeyy.scrolltrack.util.StatsUploader.maybeUploadOnForeground(this);
     }
 
     @Override

@@ -3,6 +3,12 @@
 All notable changes to ScrollTrack are documented here, newest first.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.5.1] - 2026-11-15
+
+### Fixed
+
+- Anonymous stats now upload whenever the app comes to the foreground, not just on a fresh launch. Previously, returning to an already-open app never sent the latest totals, so the dashboard could stay stale until the app was force-closed and reopened. Uploads are still gated: only when opted in and only when today's totals changed.
+
 ## [1.5.0] - 2026-11-15
 
 ### Added
