@@ -10,7 +10,7 @@ A personal Android tool that makes short-form scrolling visible: it counts how m
 
 ## Screenshots
 
-Screenshots are being captured on a real phone. Placeholders for now:
+Real screenshots from a phone running the app:
 
 | Dashboard | History | Life Impact | Settings |
 | --- | --- | --- | --- |
