@@ -66,6 +66,16 @@ public final class AppUpdater {
         void onChecked(UpdateCheck.UpdateInfo info, boolean reachable);
     }
 
+    public static String installedVersionName(Context ctx) {
+        try {
+            String v = ctx.getPackageManager()
+                    .getPackageInfo(ctx.getPackageName(), 0).versionName;
+            return v != null ? v : "";
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     public static int installedVersionCode(Context ctx) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {

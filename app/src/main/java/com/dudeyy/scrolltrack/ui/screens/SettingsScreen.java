@@ -33,6 +33,7 @@ public class SettingsScreen extends ScrollView {
     private LinearLayout trackingCard;
     private LinearLayout themeCard;
     private LinearLayout updateCard;
+    private LinearLayout statsCard;
     private final TrackingService.TrackingListener trackingListener = new TrackingService.TrackingListener() {
         @Override public void onStateChanged(TrackingState state) { renderTrackingCard(); }
         @Override public void onTodaySwipesChanged(int swipes) { }
@@ -87,6 +88,11 @@ public class SettingsScreen extends ScrollView {
         root.addView(sectionLabel(ctx, "App updates"));
         updateCard = UiKit.card(ctx);
         root.addView(updateCard);
+        root.addView(UiKit.vspace(ctx, 18));
+
+        root.addView(sectionLabel(ctx, "Anonymous stats"));
+        statsCard = UiKit.card(ctx);
+        root.addView(statsCard);
         root.addView(UiKit.vspace(ctx, 18));
 
         root.addView(sectionLabel(ctx, "Data"));
@@ -271,6 +277,43 @@ public class SettingsScreen extends ScrollView {
                 }));
     }
 
+    // ---------- anonymous stats ----------
+
+    private void renderStatsCard() {
+        Context ctx = getContext();
+        statsCard.removeAllViews();
+
+        ToggleView share = new ToggleView(ctx);
+        share.setCheckedSilent(prefs.isAnonymousStatsEnabled());
+        statsCard.addView(UiKit.settingRow(ctx, "Share anonymous usage stats",
+                "Once a day, sends only a random ID, the date, today's swipe total and Instagram minutes. No names, sessions or content. Off by default — turning it off stops uploads.",
+                share, null));
+        share.setOnCheckedChangeListener(c -> {
+            prefs.setAnonymousStatsEnabled(c);
+            if (c) com.dudeyy.scrolltrack.util.StatsUploader.uploadNow(ctx);
+            refresh();
+        });
+        statsCard.addView(UiKit.dividerInset(ctx));
+
+        String lastDay = prefs.getLastStatsUploadDay();
+        String status = lastDay.isEmpty()
+                ? "Nothing shared yet."
+                : "Last shared for " + lastDay + " ("
+                        + prefs.getLastStatsUploadSwipes() + " swipes, "
+                        + prefs.getLastStatsUploadMinutes() + " min).";
+        statsCard.addView(UiKit.settingRow(ctx, "What exactly is sent",
+                status + " Tap to see the full payload.", UiKit.chevron(ctx),
+                v -> UiKit.infoDialog(ctx, "What exactly is sent",
+                        "One row per day, and only while the toggle above is on:\n\n" +
+                        "{\"p_install_id\": \"<random ID made up on this phone>\",\n" +
+                        " \"p_day\": \"2026-11-15\",\n" +
+                        " \"p_swipes\": 623,\n" +
+                        " \"p_minutes\": 151,\n" +
+                        " \"p_app_version\": \"1.5.0\"}\n\n" +
+                        "The random ID cannot be linked to you or this device. " +
+                        "No session times, no names, no content — just the day's totals.")));
+    }
+
     // ---------- data ----------
 
     private View buildDataCard(Context ctx) {
@@ -327,8 +370,12 @@ public class SettingsScreen extends ScrollView {
                         "It never collects passwords, messages, contacts, or screen content. " +
                         "The accessibility service only observes scroll gestures inside Instagram — " +
                         "it cannot read text or see what you're watching. There are no accounts, " +
-                        "no servers, no analytics, and no ads. Delete everything anytime with " +
-                        "\"Clear all history\".")));
+                        "no ads, and no analytics by default.\n\n" +
+                        "One optional exception: if you turn on \"Share anonymous usage stats\" " +
+                        "in Settings, the app sends one anonymous row a day — a random ID, the " +
+                        "date, and that day's swipe and minute totals — to the developer's stats " +
+                        "server. Nothing else, and turning it off stops uploads immediately. " +
+                        "Delete everything anytime with \"Clear all history\".")));
         card.addView(UiKit.dividerInset(ctx));
         card.addView(UiKit.settingRow(ctx, "How counting works",
                 "Gestures, sessions, and honest limitations.", UiKit.chevron(ctx),
@@ -358,5 +405,6 @@ public class SettingsScreen extends ScrollView {
         renderTrackingCard();
         renderThemeCard();
         renderUpdateCard();
+        renderStatsCard();
     }
 }

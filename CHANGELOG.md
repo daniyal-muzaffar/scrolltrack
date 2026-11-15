@@ -3,6 +3,12 @@
 All notable changes to ScrollTrack are documented here, newest first.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.5.0] - 2026-11-15
+
+### Added
+
+- Opt-in anonymous usage stats: a Settings toggle ("Share anonymous usage stats", off by default) sends one row a day — a random install ID, the date, and that day's swipe total and Instagram minutes — to a Supabase backend, so the developer can see how many people use the app and how much they scroll. No names, no session times, no content. Turning it off stops uploads immediately. Backend: free Supabase project `scrolltrack-stats` (Mumbai), table `daily_stats` with RLS (anon INSERT/upsert only) and an aggregate `stats_summary()` RPC for the dashboard.
+
 ## [1.4.2] - 2026-11-15
 
 ### Changed

@@ -43,12 +43,12 @@ After that, updates arrive in the app itself: when a new version is published, S
 
 - An `AccessibilityService` restricted to the Instagram package (`com.instagram.android`) watches for Reels. It detects the Reels surface from the view structure and counts a swipe when the Reels page index advances. When the surface cannot be identified, it falls back to counting upward scroll bursts.
 - `UsageStats` is used only to reconcile total Instagram time; the count itself comes from accessibility events.
-- Everything is stored locally in SQLite (`sessions` and `day_stats` tables) plus `SharedPreferences`. No account, no server, no analytics.
+- Everything is stored locally in SQLite (`sessions` and `day_stats` tables) plus `SharedPreferences`. No account, no ads. Anonymous usage stats are opt-in only — off by default (see Privacy).
 
 ## Privacy
 
-- All data stays on your device. There is no account, no ads, and no analytics.
-- The app uses the network for one thing only: checking a small version file on GitHub for updates. That request sends nothing about you or your device.
+- All data stays on your device by default. There is no account, no ads, and no analytics.
+- The app uses the network for two things: checking a small version file on GitHub for updates (that request sends nothing about you or your device), and — only if you turn it on in Settings — sending one anonymous stats row a day: a random install ID, the date, and that day's swipe and Instagram-minute totals. No names, no session times, no content. Turning it off stops uploads immediately.
 - The accessibility service reads only structural signals — view IDs, scroll indexes, and which app is in the foreground. It never reads text content, usernames, messages, or anything personal, and nothing it sees is stored or sent anywhere.
 
 ## Tech stack

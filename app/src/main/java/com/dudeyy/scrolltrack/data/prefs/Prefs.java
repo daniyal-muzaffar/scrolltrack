@@ -93,6 +93,34 @@ public class Prefs {
     /** "system" (default), "dark", "light" */
     public String getTheme() { return sp.getString("theme", "system"); }
 
+    /** Anonymous usage stats. Off by default — purely opt-in. When on,
+     *  the app sends one small row a day (random install ID, date, that
+     *  day's swipe total and Instagram minutes) and nothing else. */
+    public boolean isAnonymousStatsEnabled() { return sp.getBoolean("anonymous_stats", false); }
+    public void setAnonymousStatsEnabled(boolean v) { sp.edit().putBoolean("anonymous_stats", v).apply(); }
+
+    /** Random install ID, generated once, used only as the anonymous-stats
+     *  key. It cannot be linked to a person or a device. */
+    public String getInstallId() {
+        String id = sp.getString("install_id", null);
+        if (id == null || id.isEmpty()) {
+            id = java.util.UUID.randomUUID().toString();
+            sp.edit().putString("install_id", id).apply();
+        }
+        return id;
+    }
+
+    /** The day + totals of the last successful stats upload.
+     *  Day "" with swipes/minutes -1 means "never uploaded". */
+    public String getLastStatsUploadDay() { return sp.getString("last_stats_day", ""); }
+    public int getLastStatsUploadSwipes() { return sp.getInt("last_stats_swipes", -1); }
+    public int getLastStatsUploadMinutes() { return sp.getInt("last_stats_minutes", -1); }
+    public void setLastStatsUpload(String day, int swipes, int minutes) {
+        sp.edit().putString("last_stats_day", day)
+                .putInt("last_stats_swipes", swipes)
+                .putInt("last_stats_minutes", minutes).apply();
+    }
+
     /** In-app updates. Auto-check is on by default; the check is a plain GET
      *  of a static version file, at most once a day. */
     public boolean isAutoUpdateCheck() { return sp.getBoolean("auto_update_check", true); }

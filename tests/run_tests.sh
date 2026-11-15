@@ -22,3 +22,8 @@ javac -encoding UTF-8 -d out \
   "$SRC/com/dudeyy/scrolltrack/util/UpdateCheck.java" \
   TestAppUpdater.java
 java -cp out TestAppUpdater
+echo "== AnonymousStats tests (pure payload + upload decision) =="
+javac -encoding UTF-8 -d out \
+  "$SRC/com/dudeyy/scrolltrack/util/AnonymousStats.java" \
+  TestAnonymousStats.java
+java -cp out TestAnonymousStats

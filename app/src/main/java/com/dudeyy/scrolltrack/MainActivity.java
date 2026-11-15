@@ -103,6 +103,7 @@ public class MainActivity extends Activity implements ScreenHost {
         setContentView(root);
         goToTab(ScreenHost.TAB_DASHBOARD);
         com.dudeyy.scrolltrack.util.AppUpdater.maybeCheckOnLaunch(this);
+        com.dudeyy.scrolltrack.util.StatsUploader.maybeUploadOnLaunch(this);
     }
 
     private View navItem(int index) {
